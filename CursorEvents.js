@@ -6,23 +6,20 @@ AFRAME.registerComponent('cursor-listener',{
         this.handleMouseEnterEvents()
         this.handleMouseLeaveEvents()
     },
-    handleComicsListState: function(){
-        const id = this.el.getAttribute('id')
-        const comicsId = ['captain-aero','outer-space','spiderman','superman']
-        if(comicsId.includes(id)){
-            const comicContainer = document.querySelector('#poster-container')
-            comicContainer.setAttribute('cursor-listener', {
-                selectedItemId:id,
-            })
-            this.el.setAttribute('material',{
-                color:'#1b11a6',
-                opacity:1
-            })
-        }
-    },
+
     handleMouseEnterEvents: function(){
         this.el.addEventListener('mouseenter', ()=>{
-            this.handleComicsListState()
+            const id = this.el.getAttribute('id')
+            const posterId = ['captain-aero','outer-space','spiderman','superman']
+            if(posterId.includes(id)){
+                const posterContainer = document.querySelector('#poster-container')
+                posterContainer.setAttribute('cursor-listener',{
+                    selectedItemId:id
+                })
+                this.el.setAttribute('material',{
+                    color:'#1b11a6'
+                })
+            }
         })
     },
     handleMouseLeaveEvents: function(){
@@ -34,7 +31,6 @@ AFRAME.registerComponent('cursor-listener',{
                 if(id===selectedItemId){
                     el.setAttribute('material',{
                     color: '#fff',
-                    opacity:1
                     })
 
                }
